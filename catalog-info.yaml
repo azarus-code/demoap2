@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1beta1
+kind: Component
+metadata:
+  name:  "demoap2"
+  description: demoapp2
+  annotations:
+    github.com/project-slug: azarus-code/demoap2
+    backstage.io/managed-by-location: url:https://github.com/azarus-code/demoap2
+    backstage.io/managed-by-origin-location: url:https://github.com/azarus-code/demoap2
+    backstage.io/kubernetes-id: "demoap2"
+    backstage.io/kubernetes-cluster: "docker-desktop"
+    backstage.io/kubernetes-namespace: 'demo'
+spec:
+  type: service
+  owner: "azarus-code"
+  lifecycle: production

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoap2
+  namespace: demo
+  labels:
+    'backstage.io/kubernetes-id': 'demoap2'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoap2
+  template:
+    metadata:
+      labels:
+        app: demoap2
+        'backstage.io/kubernetes-id': 'demoap2'
+    spec:
+      imagePullSecrets:
+      - name: registry-auth
+      containers:
+        - name: demoap2
+          image: idpdeveacr.azurecr.io/demoap2:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoap2
+  namespace: demo
+  labels:
+    #tekton.dev/pipelines: demo/springboot-pipeline
+    'backstage.io/kubernetes-id': 'demoap2'
+spec:
+  type: LoadBalancer
+  selector:
+    app: demoap2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
